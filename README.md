@@ -17,4 +17,24 @@ Operational Actionability	High. Clear categorical segmentations allow marketing 
 Risk of Overfitting	High if left untuned; mitigated successfully using constraints.	Low, though highly sensitive to outlier noise if unregularized.
 Business Recommendation
 While Logistic Regression provides a solid baseline statistical framework, the Decision Tree Classifier is recommended for this airline context.
-Customer satisfaction is rarely a linear equation; it relies heavily on feature interactions (e.g., a long flight delay might be forgiven if seat comfort and inflight entertainment scores are exceptionally high). The Decision Tree naturally flags these multi-layered thresholds, rendering decision rules transparent and directly actionable for executive product roadmaps
+Customer satisfaction is rarely a linear equation; it relies heavily on feature interactions (e.g., a long flight delay might be forgiven if seat comfort and inflight entertainment scores are exceptionally high). The Decision Tree naturally flags these multi-layered thresholds, rendering decision rules transparent and directly actionable for executive product roadmaps.
+## Empirical Model Evaluation Metrics
+
+### 1. Decision Tree Performance
+- **Optimal Grid Parameters**: `max_depth: 15`, `min_samples_leaf: 5`, `min_samples_split: 20`
+- **Test Set Accuracy**: 94.1%
+- **F1-Score (Satisfied Class)**: 94.5%
+
+#### Confusion Matrix (Decision Tree)
+- True Negatives (Correctly identified dissatisfied): 11,041
+- False Positives (Incorrectly flagged as satisfied): 718
+- False Negatives (Missed satisfied customers): 822
+- True Positives (Correctly identified satisfied): 13,395
+
+### 2. Baseline Logistic Regression Comparison
+- **Test Set Accuracy**: 83.4%
+- **F1-Score (Satisfied Class)**: 85.0%
+
+### 3. Operational Insights & Key Actionable Drivers
+The feature importance extraction revealed that **Inflight Entertainment** and **Seat Comfort** hold the highest explanatory power for passenger satisfaction. 
+- *Strategic Context*: While Logistic Regression treats features strictly independently, the Decision Tree accurately handles the interaction effects—capturing scenarios where high satisfaction in flight entertainment completely buffers minor arrival delays.
